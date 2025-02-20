@@ -1,0 +1,19 @@
+---
+- hosts: all
+  remote_user: ubuntu
+  become: yes
+  tasks:
+    - name: update apt cache
+      apt:
+        update_cache: yes
+
+    - name: create directory
+      file:
+        path: /home/ubuntu/jenkins_home
+        state: directory
+        mode: '0777'
+
+    - name: install openjdk-11-jre
+      apt:
+        name: openjdk-17-jdk
+        state: present
